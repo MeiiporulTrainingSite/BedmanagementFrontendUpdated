@@ -41,6 +41,12 @@ import Dashboardsan from "./Components/Dashboard/Dashboardsan";
 import Waitlistscrn from "./Components/WiteList/Waitlistformscren";
 import Dash12 from "./Components/Dashboard/Dash12";
 import Dashlast from "./Components/Dashboard/Dashlast";
+import Dashcol from './Components/Dashboard/Dashcol';
+
+
+
+
+
 axios.defaults.baseURL = "http://localhost:9000";
 
 axios.defaults.withCredentials = true;
@@ -83,6 +89,8 @@ function App() {
                       path="/TransferPatient"
                       element={<TransferPatient />}
                     />
+                    <Route path="/Dashcol" element={<Dashboardcol />} />
+
                     <Route path="/AdmitPatient" element={<AdmitPatient />} />
                     <Route path="/Line" element={<Line />} />
                     <Route
