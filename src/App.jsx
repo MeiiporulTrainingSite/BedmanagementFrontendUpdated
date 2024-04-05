@@ -89,7 +89,7 @@ function App() {
                       path="/TransferPatient"
                       element={<TransferPatient />}
                     />
-                    <Route path="/Dashcol" element={<Dashboardcol />} />
+                    <Route path="/Dashcall" element={<Dashcol />} />
 
                     <Route path="/AdmitPatient" element={<AdmitPatient />} />
                     <Route path="/Line" element={<Line />} />
