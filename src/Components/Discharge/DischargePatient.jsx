@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+mport React, { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -154,286 +154,346 @@ const DischargePatient = () => {
  };
 
  return (
- <div style={{ display: "flex", backgroundColor: "#f5f5f5" }}>
- <div style={{ width: "100%", padding: "10px", marginLeft: "50px" }}>
- <div
- style={{
- background: "#f0f0f0",
- padding: "10px",
- height: "70px",
- marginBottom: "10px",
- width: "1500px",
- marginLeft: "-4%",
- }}
- >
- <PersonIcon
- style={{ fontSize: 50, marginLeft: "1010px", marginTop: "5px" }}
- />
- <h2 style={{ marginLeft: "50px", marginTop: "-50px" }}>
- To Discharge patient, please enter the details
- </h2>
- </div>
- <Typography
- variant="h3"
- gutterBottom
- style={{ color: "#61AFF7", fontWeight: "bold" }}
- >
- Good Care Hospital
- </Typography>
- <Container
- maxWidth="lr"
- style={{
- display: "flex",
- height: "370px",
- width: "75%",
- marginTop: "30px",
- justifyContent: "flex-start",
- background: "#f0f0f0",
- borderRadius: "30px",
- marginLeft: "10px",
- boxShadow: "5px 10px 6px rgba(0, 0, 0, 0.3)",
- }}
- >
- <div style={{ width: "100%" }}>
- <form onSubmit={handleFormSubmit}>
- <Grid container spacing={2} style={{ marginTop: "10px" }}>
- <Grid item xs={12} sm={4}>
+    <div style={{ display: "flex", justifyContent: "center", backgroundColor: "#f5f5f5" }}>
+      <div style={{ width: "80%", padding: "10px", marginTop: "30px"  }}>
+      <Typography variant="h6" gutterBottom style={{   color: "#252B42",
+  fontFamily: "Montserrat",
+   fontWeight:"bolder", marginTop: "40px", textAlign: "center" }}>To Discharge Patient Please enter the details</Typography>
+        <Container maxWidth="lg" style={{ background: "#ffff", borderRadius: "30px", boxShadow: "5px 10px 6px rgba(0, 0, 0, 0.3)" }}>
+          <div style={{ padding: "30px" }}>
+            <form onSubmit={handleFormSubmit}>
+              <Grid container spacing={3}>
+                <Grid item xs={6} sm={3}>
+                 <InputLabel htmlFor="patientName"  sx={{ color: "#252B42" }}>PatientName</InputLabel>
+                  <TextField
+                    required
+                    sx={{
+                      transition: "box-shadow 0.3s ease-in-out",
+                      "&:hover": {
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                        ".MuiFormLabel-root ": {
+                          letterSpacing: "0.2rem",
+                          fontSize: "0.8rem",
+                          fontFamily: "Montserrat",
+                        },
+                        "& .MuiOutlinedInput-root": {
+                          background: "#f4f4f4",
+                        },
+                        ".MuiInputLabel-shrink": {
+                          letterSpacing: 0,
+                        },
+                        "& input::placeholder": {
+                          fontSize: 14,
+                          fontFamily: "Montserrat",
+                        },
+                        "& input": {
+                          fontSize: 14,
+                          fontFamily: "Montserrat",
+                        },
+                        ".MuiInputBase-root": {
+                          backgroundColor: "#F9F9F9",
+                        },
+                      },
+                    }}
+                    placeholder="Enter Name" 
+                    value={data.patientName}
+                    onChange={(e) => setData({ ...data, patientName: e.target.value })}
+                  />
+                </Grid>
 
- <TextField
- label="Name"
- id="outlined-size-small"
- size="small"
- value={data.patientName}
- onChange={(e) =>
- setData({ ...data, patientName: e.target.value })
+                
+                <Grid item xs={6} sm={3}>
+                 <InputLabel htmlFor="age"  sx={{ color: "#252B42" }}>Age</InputLabel>
+                  <TextField
+                    required
+                    sx={{
+                      transition: "box-shadow 0.3s ease-in-out",
+                      "&:hover": {
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                        ".MuiFormLabel-root ": {
+                          letterSpacing: "0.2rem",
+                          fontSize: "0.8rem",
+                          fontFamily: "Montserrat",
+                        },
+                        "& .MuiOutlinedInput-root": {
+                          background: "#f4f4f4",
+                        },
+                        ".MuiInputLabel-shrink": {
+                          letterSpacing: 0,
+                        },
+                        "& input::placeholder": {
+                          fontSize: 14,
+                          fontFamily: "Montserrat",
+                        },
+                        "& input": {
+                          fontSize: 14,
+                          fontFamily: "Montserrat",
+                        },
+                        ".MuiInputBase-root": {
+                          backgroundColor: "#F9F9F9",
+                        },
+                      },
+                    }}
+                    placeholder="Enter Age"
+                    value={data.age}
+                    onChange={(e) =>setData({ ...data, age: e.target.value })
  }
- required
- style={{ width: "100%" }}
- sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
-
- },
- 
- }}
- />
-
- </Grid>
- <Grid item xs={6} sm={1.5}>
-
- <TextField
- label="Age"
- id="outlined-size-small"
- defaultValue="Small"
- size="small"
- value={data.age}
- onChange={(e) =>
- setData({ ...data, age: e.target.value })
- }
- sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
- 
- },
- 
- 
- }}
- required
  />
 
  </Grid>
 
- <RadioGroup
- name="gender"
- value={data.gender}
- onChange={handleGenderChange}
- defaultValue="Small"
- size="small"
- sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
- 
- },
- 
- marginLeft:"40px",
- }}
- row
- >
- <Typography variant="h5" style={{ fontSize: 14, fontFamily: "Montserrat", color: "#252B42",letterSpacing: "0.2rem", fontSize: "0.8rem" }} gutterBottom>
- Gender
- </Typography>
- <FormControlLabel
- value="male"
- control={<Radio />}
- label={<Typography variant="h6" style={{ fontSize: 14, fontFamily: "Montserrat", color: "#252B42",letterSpacing: "0.2rem", fontSize: "0.8rem" }}>Male</Typography>}
- 
- />
- <FormControlLabel
- value="b"
- control={<Radio />}
- label={<Typography variant="body1" style={{ fontSize: 14, fontFamily: "Montserrat", color: "#252B42" ,letterSpacing: "0.2rem", fontSize: "0.8rem"}}>Female</Typography>}
- />
- <FormControlLabel
- value="c"
- control={<Radio />}
- label={<Typography variant="subtitle1" style={{ fontSize: 14, fontFamily: "Montserrat", color: "#252B42",letterSpacing: "0.2rem", fontSize: "0.8rem" }}>Others</Typography>}
- />
- </RadioGroup>
+ <div style={{ display: 'flex', alignItems: 'center', marginTop: '50px' }}>
+  <InputLabel sx={{ color: "#252B42",marginRight: '10px',marginLeft: "20px" }} gutterBottom>
+    Gender
+  </InputLabel>
+  <RadioGroup
+    name="gender"
+    value={data.gender}
+    onChange={handleGenderChange}
+    row
+  >
+    <FormControlLabel
+      value="Male"
+      control={<Radio size="small" />}
+      label={<span style={{ color: "#252B42" }}>1.Male</span>}
+      sx={{
+        ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
+        ".MuiInputLabel-shrink": { letterSpacing: 0 },
+        "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat" },
+        "& input": { fontSize: 14, fontFamily: "Montserrat" },
+        ".MuiInputBase-root": { backgroundColor: "#F9F9F9" },
+        transition: "box-shadow 0.3s ease-in-out",
+        "&:hover": { boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" },
+      }}
+    />
+    <FormControlLabel
+      value="Fe-Male"
+      control={<Radio size="small" />}
+      label={<span style={{ color: "#252B42" }}>2.Female</span>}
+      sx={{
+        ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
+        ".MuiInputLabel-shrink": { letterSpacing: 0 },
+        "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat" },
+        "& input": { fontSize: 14, fontFamily: "Montserrat" },
+        ".MuiInputBase-root": { backgroundColor: "#F9F9F9" },
+        transition: "box-shadow 0.3s ease-in-out",
+        "&:hover": { boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" },
+      }}
+    />
+    <FormControlLabel
+      value="Others"
+      control={<Radio size="small" />}
+      label={<span style={{ color: "#252B42" }}>3.Others</span>}
+      sx={{
+        ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
+        ".MuiInputLabel-shrink": { letterSpacing: 0 },
+        "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat" },
+        "& input": { fontSize: 14, fontFamily: "Montserrat" },
+        ".MuiInputBase-root": { backgroundColor: "#F9F9F9" },
+        transition: "box-shadow 0.3s ease-in-out",
+        "&:hover": { boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" },
+      }}
+    />
+  </RadioGroup>
+</div>
  <Grid item xs={6} sm={3} >
- 
+ <InputLabel htmlFor="dischargeTime"  sx={{ color: "#252B42" }}>DischargeTime</InputLabel>
  <LocalizationProvider dateAdapter={AdapterDayjs}>
  <TimePicker
- label=" Discharge Time"
- slotProps={{ textField: { size: "small" } }}
+ required
+ sx={{
+   transition: "box-shadow 0.3s ease-in-out",
+   "&:hover": {
+     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+     ".MuiFormLabel-root ": {
+       letterSpacing: "0.2rem",
+       fontSize: "0.8rem",
+       fontFamily: "Montserrat",
+     },
+     "& .MuiOutlinedInput-root": {
+       background: "#f4f4f4",
+     },
+     ".MuiInputLabel-shrink": {
+       letterSpacing: 0,
+     },
+     "& input::placeholder": {
+       fontSize: 14,
+       fontFamily: "Montserrat",
+     },
+     "& input": {
+       fontSize: 14,
+       fontFamily: "Montserrat",
+     },
+     ".MuiInputBase-root": {
+       backgroundColor: "#F9F9F9",
+     },
+   },
+ }} 
+ placeholder="Discharge Time"
  value={data.dischargeTime}
  onChange={(newTime) => handleTime(newTime)}
  renderInput={(params) => <TextField {...params} />}
- sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
- 
- },
- 
- }}
  />
  </LocalizationProvider>
  
  </Grid>
 
  <Grid item xs={6} sm={3}>
- 
+ <InputLabel htmlFor="dischargeDate"  sx={{ color: "#252B42" }}>DischargeDate</InputLabel>
  <LocalizationProvider dateAdapter={AdapterDayjs}>
  <DatePicker
- label="Discharge Date"
- slotProps={{ textField: { size: "small" } }}
+ required
+ sx={{
+   transition: "box-shadow 0.3s ease-in-out",
+   "&:hover": {
+     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+     ".MuiFormLabel-root ": {
+       letterSpacing: "0.2rem",
+       fontSize: "0.8rem",
+       fontFamily: "Montserrat",
+     },
+     "& .MuiOutlinedInput-root": {
+       background: "#f4f4f4",
+     },
+     ".MuiInputLabel-shrink": {
+       letterSpacing: 0,
+     },
+     "& input::placeholder": {
+       fontSize: 14,
+       fontFamily: "Montserrat",
+     },
+     "& input": {
+       fontSize: 14,
+       fontFamily: "Montserrat",
+     },
+     ".MuiInputBase-root": {
+       backgroundColor: "#F9F9F9",
+     },
+   },
+ }}
+ placeholder="Discharge Date"
  value={
  data.dischargeDate ? dayjs(data.dischargeDate) : null
  }
  onChange={(newDate) => Dated(newDate)}
  renderInput={(params) => <TextField {...params} />}
- sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
- 
- },
- 
- }}
  />
  </LocalizationProvider>
  
  </Grid>
 
  <Grid item xs={6} sm={3} >
- 
- <FormControl size="small" fullWidth variant="outlined" sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
-
- },
- 
- }}>
- <InputLabel id="demo-select-small-label">
- Medical Acuity
- </InputLabel>
- <Select
- labelId="demo-select-small-label"
- id="demo-select-small"
- value={data.medicalAcuity}
- onChange={(e) =>
- setData({ ...data, medicalAcuity: e.target.value })
- }
- label="Medical Acuity"
- >
- <MenuItem value="Critical">Critical</MenuItem>
- <MenuItem value="Moderate">Moderate</MenuItem>
- <MenuItem value="Stable">Stable</MenuItem>
- </Select>
- </FormControl>
- 
+ <InputLabel htmlFor="medicalAcuity"  sx={{ color: "#252B42" }}>MedicalAcuity</InputLabel>
+ <TextField
+                    required
+                    sx={{
+                      transition: "box-shadow 0.3s ease-in-out",
+                      "&:hover": {
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                        ".MuiFormLabel-root ": {
+                          letterSpacing: "0.2rem",
+                          fontSize: "0.8rem",
+                          fontFamily: "Montserrat",
+                        },
+                        "& .MuiOutlinedInput-root": {
+                          background: "#f4f4f4",
+                        },
+                        ".MuiInputLabel-shrink": {
+                          letterSpacing: 0,
+                        },
+                        "& input::placeholder": {
+                          fontSize: 14,
+                          fontFamily: "Montserrat",
+                        },
+                        "& input": {
+                          fontSize: 14,
+                          fontFamily: "Montserrat",
+                        },
+                        ".MuiInputBase-root": {
+                          backgroundColor: "#F9F9F9",
+                        },
+                      },
+                    }}
+                    placeholder="MedicalAcuity" 
+                    value={data.medicalAcuity}
+                    onChange={(e) => setData({ ...data, medicalAcuity: e.target.value })}
+                  />
  </Grid>
 
  <Grid item xs={6} sm={3}>
- 
+ <InputLabel htmlFor="admissionDate"  sx={{ color: "#252B42" }}>AdmissionDate</InputLabel>
  <LocalizationProvider dateAdapter={AdapterDayjs}>
  <DatePicker
- label="Admission Date"
- slotProps={{ textField: { size: "small" } }}
+ sx={{
+    transition: "box-shadow 0.3s ease-in-out",
+    "&:hover": {
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+      ".MuiFormLabel-root ": {
+        letterSpacing: "0.2rem",
+        fontSize: "0.8rem",
+        fontFamily: "Montserrat",
+      },
+      "& .MuiOutlinedInput-root": {
+        background: "#f4f4f4",
+      },
+      ".MuiInputLabel-shrink": {
+        letterSpacing: 0,
+      },
+      "& input::placeholder": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      "& input": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      ".MuiInputBase-root": {
+        backgroundColor: "#F9F9F9",
+      },
+    },
+  }}
+ placeholder="Admission Date"
  value={
  data.admissionDate ? dayjs(data.admissionDate) : null
  }
  onChange={(newDate) => handleDatedChanged(newDate)}
  renderInput={(params) => <TextField {...params} />}
- sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
- 
- },
- 
- }}
- />
+/>
  </LocalizationProvider>
  
  </Grid>
  <Grid item xs={12} sm={3}>
- 
- <FormControl size="small" fullWidth variant="outlined" sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
-
- },
- 
- }}>
- <InputLabel id="demo-select-small-label">
- Discharge Reason
- </InputLabel>
+ <InputLabel htmlFor="dischargeReasons"  sx={{ color: "#252B42" }}>DischargeReasons</InputLabel>
+ <FormControl fullWidth sx={{
+    transition: "box-shadow 0.3s ease-in-out",
+    "&:hover": {
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+      ".MuiFormLabel-root ": {
+        letterSpacing: "0.2rem",
+        fontSize: "0.8rem",
+        fontFamily: "Montserrat",
+      },
+      "& .MuiOutlinedInput-root": {
+        background: "#f4f4f4",
+      },
+      ".MuiInputLabel-shrink": {
+        letterSpacing: 0,
+      },
+      "& input::placeholder": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      "& input": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      ".MuiInputBase-root": {
+        backgroundColor: "#F9F9F9",
+      },
+    },
+  }}
+  >
+  <InputLabel htmlFor="dischargeReasons"  sx={{ color: "#252B42", marginTop:"-3px"}}>Select</InputLabel>
  <Select
  labelId="demo-select-small-label"
  id="demo-select-small"
@@ -441,7 +501,7 @@ const DischargePatient = () => {
  onChange={(e) =>
  setData({ ...data, dischargeReasons: e.target.value })
  }
- label="Discharge Reason"
+ placeholder="Discharge Reason"
  >
  <MenuItem value="">Select Reason</MenuItem>
  <MenuItem value="Patient is ok">Patient is ok</MenuItem>
@@ -462,54 +522,82 @@ const DischargePatient = () => {
  
  </Grid>
  <Grid item xs={6} sm={3} >
- 
+ <InputLabel htmlFor="bedNumber"  sx={{ color: "#252B42" }}>BedNumber</InputLabel>
  <TextField
- id="outlined-size-small"
- size="small"
- label=" BedNumber"
+ sx={{
+    transition: "box-shadow 0.3s ease-in-out",
+    "&:hover": {
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+      ".MuiFormLabel-root ": {
+        letterSpacing: "0.2rem",
+        fontSize: "0.8rem",
+        fontFamily: "Montserrat",
+      },
+      "& .MuiOutlinedInput-root": {
+        background: "#f4f4f4",
+      },
+      ".MuiInputLabel-shrink": {
+        letterSpacing: 0,
+      },
+      "& input::placeholder": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      "& input": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      ".MuiInputBase-root": {
+        backgroundColor: "#F9F9F9",
+      },
+    },
+  }}
+ placeholder=" BedNumber"
  value={data.bedNumber}
  onChange={(e) =>
  setData({ ...data, bedNumber: e.target.value })
  }
- sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
- 
- },
- 
- }}
- required
  />
  
  </Grid>
  <Grid item xs={12} sm={3} >
- 
- <FormControl size="small" fullWidth variant="outlined" sx={{
- ".MuiFormLabel-root ": { letterSpacing: "0.2rem", fontSize: "0.8rem" },
- ".MuiInputLabel-shrink": { letterSpacing: 0 },
- "& input::placeholder": { fontSize: 14, fontFamily: "Montserrat", color: "#737373" },
- "& input": { fontSize: 14, fontFamily: "Montserrat", color: "#252B42" },
- ".MuiInputBase-root": { backgroundColor: "#F9F9F9", color: "#252B42" },
- transition: "box-shadow 0.3s ease-in-out",
- "&:hover": {
- boxShadow: "0px 0px 0px rgba(0, 0, 0, 0.2)",
-
- },
- 
- }}>
- <InputLabel>WardID</InputLabel>
+ <InputLabel htmlFor="wardId"  sx={{ color: "#252B42" }}>WardId</InputLabel>
+ <FormControl fullWidth sx={{
+    transition: "box-shadow 0.3s ease-in-out",
+    "&:hover": {
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+      ".MuiFormLabel-root ": {
+        letterSpacing: "0.2rem",
+        fontSize: "0.8rem",
+        fontFamily: "Montserrat",
+      },
+      "& .MuiOutlinedInput-root": {
+        background: "#f4f4f4",
+      },
+      ".MuiInputLabel-shrink": {
+        letterSpacing: 0,
+      },
+      "& input::placeholder": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      "& input": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      ".MuiInputBase-root": {
+        backgroundColor: "#F9F9F9",
+      },
+    },
+  }}
+>
+ <InputLabel htmlFor="wardId"  sx={{ color: "#252B42", marginTop:"-5px" }}>Select</InputLabel>
  <Select
  value={data.wardId}
  onChange={(e) =>
  setData({ ...data, wardId: e.target.value })
  }
- label="Wards"
+ placeholder="Wards"
  >
  <MenuItem value="Ward A1">Ward A1</MenuItem>
  <MenuItem value="Ward B1">Ward B1</MenuItem>
@@ -518,9 +606,46 @@ const DischargePatient = () => {
  <MenuItem value="Ward E1">Ward E1</MenuItem>
  </Select>
  </FormControl>
+ </Grid>
+ <Grid item xs={6} sm={3} >
+ <InputLabel htmlFor="patientId"  sx={{ color: "#252B42" }}>PatientId</InputLabel>
+ <TextField
+ sx={{
+    transition: "box-shadow 0.3s ease-in-out",
+    "&:hover": {
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+      ".MuiFormLabel-root ": {
+        letterSpacing: "0.2rem",
+        fontSize: "0.8rem",
+        fontFamily: "Montserrat",
+      },
+      "& .MuiOutlinedInput-root": {
+        background: "#f4f4f4",
+      },
+      ".MuiInputLabel-shrink": {
+        letterSpacing: 0,
+      },
+      "& input::placeholder": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      "& input": {
+        fontSize: 14,
+        fontFamily: "Montserrat",
+      },
+      ".MuiInputBase-root": {
+        backgroundColor: "#F9F9F9",
+      },
+    },
+  }}
+ placeholder="PatientId"
+ value={data.patientId}
+ onChange={(e) =>
+ setData({ ...data, patientId: e.target.value })
+ }
+ />
  
  </Grid>
-
  <Grid item xs={10}>
  <Button
  type="submit"
