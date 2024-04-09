@@ -19,6 +19,8 @@ import { toast } from "react-hot-toast";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import BedIcon from '@mui/icons-material/Bed';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 const WaitingList = () => {
   const [openEditDialog, setOpenEditDialog] = useState(false);
@@ -118,6 +120,8 @@ const WaitingList = () => {
         body: JSON.stringify({
           patientId: editedData.patientId,
           bedNumber: editedData.bedNumber,
+          wardName: editedData.wardName,
+          wardType: editedData.wardType
         }),
       });
 
@@ -157,26 +161,24 @@ const WaitingList = () => {
               <TableBody>
                 {patients.map((patient, index) => (
                   <TableRow key={index}>
-                    <TableCell>{patient.WaitlistEntryfields[0].patientName}</TableCell>
-                    <TableCell>{patient.WaitlistEntryfields[0].patientId}</TableCell>
+                    <TableCell>{patient.WaitlistEntryfields[0]?.patientName}</TableCell>
+                    <TableCell>{patient.WaitlistEntryfields[0]?.patientId}</TableCell>
 
-                    <TableCell>{patient.WaitlistEntryfields[0].age}</TableCell>
-                    <TableCell>{patient.WaitlistEntryfields[0].gender}</TableCell>
-                    <TableCell>{patient.WaitlistEntryfields[0].priority}</TableCell>
-                    <TableCell>{patient.WaitlistEntryfields[0].admittingDoctors.join(", ")}</TableCell>
-                    <TableCell>{patient.WaitlistEntryfields[0].admissionDate}</TableCell>
+                    <TableCell>{patient.WaitlistEntryfields[0]?.age}</TableCell>
+                    <TableCell>{patient.WaitlistEntryfields[0]?.gender}</TableCell>
+                    <TableCell>{patient.WaitlistEntryfields[0]?.priority}</TableCell>
+                    <TableCell>{patient.WaitlistEntryfields[0]?.admittingDoctors?.join(", ")}</TableCell>
+                    <TableCell>{patient.WaitlistEntryfields[0]?.admissionDate}</TableCell>
                     <TableCell>
                       <IconButton color="primary" onClick={() => handleEditClick(patient._id, patient, 'edit')}>
-                        <EditIcon />
+                        <BedIcon />
                       </IconButton>
                       <IconButton color="primary" onClick={() => handleEditClick(patient._id, patient, 'priority')}>
-                        <EditIcon />
+                        <BorderColorIcon />
                       </IconButton>
-                      <IconButton color="secondary" onClick={() => handleDeletePatient(patient.WaitlistEntryfields[0].patientId)}>
-
-  <DeleteIcon />
-</IconButton>
-
+                      <IconButton color="secondary" onClick={() => handleDeletePatient(patient.WaitlistEntryfields[0]?.patientId)}>
+                        <DeleteIcon />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -199,6 +201,26 @@ const WaitingList = () => {
                   label="Priority"
                   name="priority"
                   value={editedData.priority || ""}
+                  onChange={handleInputChange}
+                  fullWidth
+                  margin="normal"
+                />
+              )}
+              {editedData.actionType === 'edit' && ( // Render other inputs based on different action types
+                <TextField
+                  label="Ward Name"
+                  name="wardName"
+                  value={editedData.wardName || ""}
+                  onChange={handleInputChange}
+                  fullWidth
+                  margin="normal"
+                />
+              )}
+              {editedData.actionType === 'edit' && ( // Render other inputs based on different action types
+                <TextField
+                  label="Ward Type"
+                  name="wardType"
+                  value={editedData.wardType || ""}
                   onChange={handleInputChange}
                   fullWidth
                   margin="normal"
